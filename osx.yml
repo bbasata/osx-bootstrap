@@ -1,0 +1,49 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Install Cask
+      command: brew install caskroom/cask/brew-cask creates=/usr/local/bin/brew-cask.rb
+
+    - name: Install macvim
+      shell: brew install macvim --override-system-vim creates=/usr/local/bin/mvim
+
+    - name: Install Homebrew packages
+      homebrew: name={{ item }} state=present
+      with_items:
+        - ack
+        - ctags
+        - hub
+        - phantomjs
+        - rbenv
+        - ruby-build
+        - tmux
+
+    - name: Install Casks
+      homebrew_cask: name={{ item }} state=present
+      with_items:
+        - cord
+        - dropbox
+        - firefox
+        - google-chrome
+        - heroku-toolbelt
+        - iterm2
+        - skitch
+        - skype
+        - postgres
+
+    - name: Install janus
+      shell: curl -Lo- https://bit.ly/janus-bootstrap | bash
+      args:
+        creates: ~/.vim/janus
+
+    - name: Create vim plugin directory
+      file: state=directory path=~/.janus
+
+    - name: Install vim plugins
+      git: repo={{ item.repo }} dest={{ item.dest }}
+      with_items:
+        - { repo: 'https://github.com/skalnik/vim-vroom.git', dest: '~/.janus/vim-vroom' }
+        - { repo: 'https://github.com/benmills/vimux.git', dest: '~/.janus/vimux' }
+        - { repo: 'https://github.com/tpope/vim-cucumber.git', dest: '~/.janus/vim-cucumber' }
+        - { repo: 'https://github.com/airblade/vim-gitgutter.git', dest: '~/.janus/vim-gitgutter' }
