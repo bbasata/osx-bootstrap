@@ -3,10 +3,14 @@
   connection: local
   tasks:
     - name: Install Cask
-      command: brew install caskroom/cask/brew-cask creates=/usr/local/bin/brew-cask.rb
+      command: brew install caskroom/cask/brew-cask
+      args:
+        creates: /usr/local/bin/brew-cask.rb
 
     - name: Install macvim
-      shell: brew install macvim --override-system-vim creates=/usr/local/bin/mvim
+      shell: brew install macvim --override-system-vim
+      args:
+        creates: /usr/local/bin/mvim
 
     - name: Install Homebrew packages
       homebrew: name={{ item }} state=present
@@ -19,6 +23,7 @@
         - rbenv
         - ruby-build
         - tmux
+        - wget
 
     - name: Install Casks
       homebrew_cask: name={{ item }} state=present
@@ -27,10 +32,14 @@
         - dropbox
         - firefox
         - google-chrome
+        - harvest
         - heroku-toolbelt
         - iterm2
+        - lastpass
+        - screenhero
         - skitch
         - skype
+        - slack
         - postgres
 
     - name: Install janus

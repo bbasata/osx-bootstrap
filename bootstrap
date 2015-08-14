@@ -1,20 +1,20 @@
 #!/bin/bash
 
 xcodebuild --help >/dev/null 2>&1
-if [ $? -ne 0 ]; then
+if [[ $? -ne 0 ]]; then
   echo 'Please install XCode through the App Store. Homebrew uses XCode to build MacVim'
   exit 1
 fi
 
 xcode-select --print-path >/dev/null 2>&1
-if [ $? -ne 0 ]; then
+if [[ $? -ne 0 ]]; then
   echo 'Please install Command Line Developer Tools with `xcode-select --install` before proceeding'
   exit 1
 fi
 
 which brew >/dev/null 2>&1
-if [ $? -ne 0 ]; then
-  echo 'Please install Homebrew from http//brew.sh'
+if [[ $? -ne 0 ]]; then
+  echo 'Please install Homebrew from http://brew.sh'
   exit 1
 fi
 
