@@ -57,3 +57,6 @@
         - { repo: 'https://github.com/benmills/vimux.git', dest: '~/.janus/vimux' }
         - { repo: 'https://github.com/tpope/vim-cucumber.git', dest: '~/.janus/vim-cucumber' }
         - { repo: 'https://github.com/airblade/vim-gitgutter.git', dest: '~/.janus/vim-gitgutter' }
+
+    - name: Ensure ~/code exists
+      file: path={{ "~/code" | expanduser }} state=directory
