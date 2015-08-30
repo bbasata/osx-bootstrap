@@ -13,16 +13,19 @@
         creates: /usr/local/bin/mvim
 
     - name: Install Homebrew packages
-      homebrew: name={{ item }} state=present
+      homebrew: name={{ item }} state=present update_homebrew=yes
       with_items:
         - ack
         - awscli
         - ctags
         - hub
+        - imagemagick
         - phantomjs
         - rbenv
+        - rbenv-gem-rehash
         - ruby-build
         - tmux
+        - unrar
         - wget
 
     - name: Install Casks
@@ -36,6 +39,7 @@
         - heroku-toolbelt
         - iterm2
         - lastpass
+        - postgres
         - screenhero
         - skitch
         - skype
