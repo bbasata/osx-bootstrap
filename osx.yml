@@ -12,6 +12,16 @@
       args:
         creates: /usr/local/bin/mvim
 
+    - name: Get Homebrew/Versions
+      shell: brew tap homebrew/versions
+      args:
+        creates: /usr/local/Library/Taps/homebrew/homebrew-versions
+
+    - name: Uninstall Homebrew packages
+      homebrew: name={{ item }} state=absent
+      with_items:
+        - phantomjs # avoiding 2.0: https://github.com/ariya/phantomjs/issues/12506
+
     - name: Install Homebrew packages
       homebrew: name={{ item }} state=present update_homebrew=yes
       with_items:
@@ -20,7 +30,7 @@
         - ctags
         - hub
         - imagemagick
-        - phantomjs
+        - phantomjs198
         - rbenv
         - rbenv-gem-rehash
         - ruby-build
