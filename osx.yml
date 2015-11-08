@@ -5,7 +5,7 @@
     - name: Install Cask
       command: brew install caskroom/cask/brew-cask
       args:
-        creates: /usr/local/bin/brew-cask.rb
+        creates: /usr/local/bin/brew-cask
 
     - name: Install macvim
       shell: brew install macvim --override-system-vim
