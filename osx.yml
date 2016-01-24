@@ -2,11 +2,6 @@
 - hosts: localhost
   connection: local
   tasks:
-    - name: Install Cask
-      command: brew install caskroom/cask/brew-cask
-      args:
-        creates: /usr/local/bin/brew-cask
-
     - name: Install macvim
       shell: brew install macvim --override-system-vim
       args:
@@ -28,12 +23,14 @@
         - ack
         - awscli
         - ctags
+        - hg
         - hub
         - imagemagick
+        - jq
         - phantomjs198
         - rbenv
-        - rbenv-gem-rehash
         - ruby-build
+        - terraform
         - tmux
         - unrar
         - wget
@@ -48,6 +45,7 @@
         - google-chrome
         - harvest
         - heroku-toolbelt
+        - intellij-idea-ce
         - iterm2
         - lastpass
         - postgres
@@ -56,6 +54,7 @@
         - skype
         - slack
         - postgres
+        - virtualbox
 
     - name: Install janus
       shell: curl -Lo- https://bit.ly/janus-bootstrap | bash
@@ -72,6 +71,10 @@
         - { repo: 'https://github.com/benmills/vimux.git', dest: '~/.janus/vimux' }
         - { repo: 'https://github.com/tpope/vim-cucumber.git', dest: '~/.janus/vim-cucumber' }
         - { repo: 'https://github.com/airblade/vim-gitgutter.git', dest: '~/.janus/vim-gitgutter' }
+        - { repo: 'https://github.com/vim-scripts/ruby-matchit.git', dest: '~/.janus/ruby-matchit' }
+        - { repo: 'https://github.com/kana/vim-textobj-user.git', dest: '~/.janus/vim-textobj-user' }
+        - { repo: 'https://github.com/nelstrom/vim-textobj-rubyblock.git', dest: '~/.janus/vim-textobj-rubyblock' }
+        - { repo: 'https://github.com/michaeljsmith/vim-indent-object.git', dest: '~/.janus/vim-indent-object' }
 
     - name: Ensure ~/code exists
       file: path={{ "~/code" | expanduser }} state=directory
